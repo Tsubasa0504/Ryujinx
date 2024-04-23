@@ -59,5 +59,17 @@ namespace Ryujinx.HLE.HOS.Services.Nfc.NfcManager
 
             return ResultCode.Success;
         }
+        
+        [CommandCmif(407)] // 4.0.0+
+        //AttachAvailabilityChangeEvent() -> nn::nfc::DeviceHandle
+        public ResultCode AttachAvailabilityChangeEvent(ServiceCtx context)
+        {
+            context.ResponseData.Write(nn::nfc::DeviceHandle);
+
+            Logger.Stub?.PrintStub(LogClass.ServiceNfc, new { _permissionLevel });
+
+            return ResultCode.Success;
+        }
+        
     }
 }
